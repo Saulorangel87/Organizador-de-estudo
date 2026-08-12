@@ -1,0 +1,23 @@
+.formMateria {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #dbe2ea;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.input {
+    border-radius: 50px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.botao {
+    background-color: #1B3A6B;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+}
