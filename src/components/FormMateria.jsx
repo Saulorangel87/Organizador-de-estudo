@@ -8,7 +8,7 @@ export default function FormMateria({ setMaterias, materias }) {
       className={styles.formMateria}
       onSubmit={(e) => {
         e.preventDefault();
-        setMaterias([...materias, nome]);
+        setMaterias([...materias,{id: new Date().getTime(), nome }]);
         setNome("");
       }}
     >
