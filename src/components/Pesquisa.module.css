@@ -1,0 +1,8 @@
+.inputPesquisa {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 50px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin: 10px 0;
+}

@@ -12,16 +12,22 @@ export default function App() {
   function excluirMateria(id) {
     setMaterias(materias.filter((materia) => materia.id !== id));
   }
-  const materiasFiltradas = materias.filter((materia) =>
-    materia.nome.toLowerCase().includes(pesquisa.toLowerCase())
-  );
+  const materiasFiltradas = materias
+    .filter((materia) =>
+      materia.nome.toLowerCase().includes(pesquisa.toLowerCase()),
+    )
+    .sort((a, b) => a.nome.localeCompare(b.nome));
+
   return (
     <div className={styles.app}>
       <Header />
       <FormMateria setMaterias={setMaterias} materias={materias} />
       <Pesquisa pesquisa={pesquisa} setPesquisa={setPesquisa} />
       <p>Total de materias: {materiasFiltradas.length}</p>
-      <ListaMateria materias={materiasFiltradas} onExcluirMateria={excluirMateria} />
+      <ListaMateria
+        materias={materiasFiltradas}
+        onExcluirMateria={excluirMateria}
+      />
     </div>
   );
 }

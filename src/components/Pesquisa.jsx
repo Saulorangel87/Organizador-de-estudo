@@ -1,7 +1,9 @@
+import styles from "./Pesquisa.module.css";
+
 export default function Pesquisa({ pesquisa, setPesquisa }) {
   return (
     <input
-      className="input"
+      className={styles.inputPesquisa}
       type="text"
       placeholder="Pesquisar matéria..."
       value={pesquisa}
