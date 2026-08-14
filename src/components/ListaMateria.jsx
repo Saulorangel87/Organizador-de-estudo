@@ -8,12 +8,18 @@ export default function ListaMateria({
   return (
     <ul className={styles.listaMateria}>
       {materias.map((materia) => {
-        const progresso = (materia.sessoesEstudadas / materia.meta) * 100;
+        const progresso = Math.min(
+          (materia.sessoesEstudadas / materia.meta) * 100,
+          100,
+        );
         return (
           <li className={styles.item} key={materia.id}>
             <div className={styles.linhaTopo}>
               {materia.nome}
-              <p>{Math.round(progresso)}%</p>
+              <div className={styles.status}>
+                <span>{Math.round(progresso)}%</span>
+                {materia.sessoesEstudadas >= materia.meta ? "Concluído ✅" : ""}
+              </div>
             </div>
             <div className={styles.linhaBaixo}>
               <div className={styles.barrafundo}>

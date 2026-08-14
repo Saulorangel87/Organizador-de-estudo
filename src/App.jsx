@@ -34,7 +34,7 @@ export default function App() {
   function estudarMateria(id) {
     setMaterias(
       materias.map((materia) => {
-        if (materia.id === id) {
+        if (materia.id === id && materia.sessoesEstudadas < materia.meta) {
           return { ...materia, sessoesEstudadas: materia.sessoesEstudadas + 1 };
         }
         return materia;
