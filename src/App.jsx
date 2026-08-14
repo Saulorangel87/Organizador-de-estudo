@@ -27,7 +27,18 @@ export default function App() {
       <ListaMateria
         materias={materiasFiltradas}
         onExcluirMateria={excluirMateria}
+        onEstudarMateria={estudarMateria}
       />
     </div>
   );
+  function estudarMateria(id) {
+    setMaterias(
+      materias.map((materia) => {
+        if (materia.id === id) {
+          return { ...materia, sessoesEstudadas: materia.sessoesEstudadas + 1 };
+        }
+        return materia;
+      }),
+    );
+  }
 }
