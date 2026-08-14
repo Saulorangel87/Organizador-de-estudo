@@ -11,19 +11,30 @@ export default function ListaMateria({
         const progresso = (materia.sessoesEstudadas / materia.meta) * 100;
         return (
           <li className={styles.item} key={materia.id}>
-            {materia.nome} <p>{Math.round(progresso)}%</p>
-            <button
-              className={styles.botaoEstudar}
-              onClick={() => onEstudarMateria(materia.id)}
-            >
-              Estudar
-            </button>
-            <button
-              className={styles.botaoExcluir}
-              onClick={() => onExcluirMateria(materia.id)}
-            >
-              Excluir
-            </button>
+            <div className={styles.linhaTopo}>
+              {materia.nome}
+              <p>{Math.round(progresso)}%</p>
+            </div>
+            <div className={styles.linhaBaixo}>
+              <div className={styles.barrafundo}>
+                <div
+                  className={styles.barrapreenchida}
+                  style={{ width: `${progresso}%` }}
+                ></div>
+              </div>
+              <button
+                className={styles.botaoEstudar}
+                onClick={() => onEstudarMateria(materia.id)}
+              >
+                Estudar
+              </button>
+              <button
+                className={styles.botaoExcluir}
+                onClick={() => onExcluirMateria(materia.id)}
+              >
+                Excluir
+              </button>
+            </div>
           </li>
         );
       })}
