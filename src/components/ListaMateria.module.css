@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 1px;
   list-style: none;
-  background-color: #dbe2ea;
+  background-color: var(--cor-fundo-card);
   padding: 20px;
   border-radius: 10px;
 }
@@ -15,7 +15,7 @@
 }
 
 .botaoEstudar {
-  background-color: #1b3a6b;
+  background-color: var(--cor-destaque);
   color: white;
   border: none;
   padding: 8px 20px;
@@ -37,11 +37,12 @@
   height: 10px;
   background-color: #ddd;
   border-radius: 5px;
+  flex-basis: 100%;
 }
 
 .barrapreenchida {
   height: 100%;
-  background-color: #1b3a6b;
+  background-color: var(--cor-destaque);
   border-radius: 5px;
   transition: width 0.3s ease-in-out;
 }
@@ -49,12 +50,15 @@
 .linhaTopo {
   display: flex;
   justify-content: space-between;
+  color: var(--cor-texto);
 }
 
 .linhaBaixo {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
+  color: var(--cor-texto);
 }
 
 .status {

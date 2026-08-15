@@ -1,25 +1,26 @@
 .header {
-    color: white;
-    font-size: 34px;
-    font-weight: 700;
-    background-color: #1B3A6B;
-    text-align: center;
-    padding: 25px 20px;
-    border-radius: 14px 14px 0 0;
-    box-sizing: border-box;
-    margin: -8px -8px 10px;
+  color: white;
+  font-size: 34px;
+  font-weight: 700;
+  background-color: var(--cor-destaque);
+  text-align: center;
+  padding: 25px 20px;
+  border-radius: 14px 14px 0 0;
+  box-sizing: border-box;
+  margin: -8px -8px 10px;
 }
 
 .onLimparDados {
-    background: transparent;
-    border: none;
-    font-size: 12px;
-    cursor: pointer;
-    padding: 2px;
+  background: transparent;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 2px;
+  color: var(--cor-texto);
 }
 
 .onLimparDados:hover {
-    color: #1B3A6B;
-    text-decoration: underline;
-    font-weight: 400;
+  color: #1b3a6b;
+  text-decoration: underline;
+  font-weight: 400;
 }

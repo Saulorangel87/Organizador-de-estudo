@@ -1,0 +1,15 @@
+:root {
+    --cor-fundo: #ffffff;
+    --cor-fundo-card: #dbe2ea;
+    --cor-texto: #000000;
+    --cor-destaque: #1b3a6b;
+    --cor-destaque-hover: #0d2a4f;
+}
+
+.dark {
+    --cor-fundo: #121212;
+    --cor-fundo-card: #2a2a2a;
+    --cor-texto: #ffffff;
+    --cor-destaque: #1b3a6b;
+    --cor-destaque-hover: #3a5f9e;
+}
