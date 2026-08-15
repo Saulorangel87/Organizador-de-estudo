@@ -5,13 +5,18 @@ export default function ListaMateria({
   onExcluirMateria,
   onEstudarMateria,
 }) {
+  if (materias.length === 0) {
+    return <p>Nenhuma matéria cadastrada.</p>;
+  }
   return (
     <ul className={styles.listaMateria}>
       {materias.map((materia) => {
         const progresso = Math.min(
           (materia.sessoesEstudadas / materia.meta) * 100,
           100,
-        );
+        )
+        const cor = progresso < 30 ? "red" : progresso < 70 ? "yellow" : "green";
+
         return (
           <li className={styles.item} key={materia.id}>
             <div className={styles.linhaTopo}>
@@ -25,7 +30,7 @@ export default function ListaMateria({
               <div className={styles.barrafundo}>
                 <div
                   className={styles.barrapreenchida}
-                  style={{ width: `${progresso}%` }}
+                  style={{ width: `${progresso}%`, backgroundColor: cor }}
                 ></div>
               </div>
               <button

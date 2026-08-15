@@ -5,6 +5,7 @@ export default function FormMateria({ setMaterias, materias }) {
   const [nome, setNome] = useState("");
   const [meta, setMeta] = useState(0);
   const inputNomeRef = useRef(null);
+  const [erro, setErro] = useState("");
 
   return (
     <form
@@ -12,7 +13,7 @@ export default function FormMateria({ setMaterias, materias }) {
       onSubmit={(e) => {
         e.preventDefault();
         if (Number(meta) <= 0) {
-          alert("A meta não pode ser zero ou negativa.");
+          setErro("A meta não pode ser zero ou negativa.");
           return;
         }
         setMaterias([
@@ -27,6 +28,7 @@ export default function FormMateria({ setMaterias, materias }) {
         setNome("");
         setMeta(0);
         inputNomeRef.current.focus();
+        setErro("");
       }}
     >
       <label htmlFor="nome">Nome da matéria:</label>
@@ -46,7 +48,8 @@ export default function FormMateria({ setMaterias, materias }) {
         min="1"
         value={meta}
         onChange={(e) => setMeta(e.target.value)}
-      />
+        />
+        {erro && <p className={styles.erro}>{erro}</p>}
       <button className={styles.botao}>Adicionar</button>
     </form>
   );
