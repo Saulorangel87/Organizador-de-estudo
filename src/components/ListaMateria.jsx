@@ -32,7 +32,7 @@ export default function ListaMateria({
                 className={styles.botaoEstudar}
                 onClick={() => onEstudarMateria(materia.id)}
               >
-                Estudar
+                Estudei hoje
               </button>
               <button
                 className={styles.botaoExcluir}

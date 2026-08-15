@@ -30,6 +30,13 @@ export default function App() {
       }),
     );
   }
+
+  function limparDados() {
+    if (confirm("Tem certeza que deseja limpar os dados?")) {
+      localStorage.removeItem("materias");
+      setMaterias([]);
+    }
+  }
   const materiasFiltradas = materias
     .filter((materia) =>
       materia.nome.toLowerCase().includes(pesquisa.toLowerCase()),
@@ -38,7 +45,7 @@ export default function App() {
 
   return (
     <div className={styles.app}>
-      <Header />
+      <Header onLimparDados={limparDados} />
       <FormMateria setMaterias={setMaterias} materias={materias} />
       <Pesquisa pesquisa={pesquisa} setPesquisa={setPesquisa} />
       <p>Total de materias: {materiasFiltradas.length}</p>

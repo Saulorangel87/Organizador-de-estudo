@@ -6,4 +6,20 @@
     text-align: center;
     padding: 25px 20px;
     border-radius: 14px 14px 0 0;
+    box-sizing: border-box;
+    margin: -8px -8px 10px;
+}
+
+.onLimparDados {
+    background: transparent;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.onLimparDados:hover {
+    color: #1B3A6B;
+    text-decoration: underline;
+    font-weight: 400;
 }
