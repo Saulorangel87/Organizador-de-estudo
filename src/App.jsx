@@ -1,16 +1,34 @@
 import FormMateria from "./components/FormMateria.jsx";
 import Header from "./components/Header.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ListaMateria from "./components/ListaMateria.jsx";
 import styles from "./App.module.css";
 import Pesquisa from "./components/Pesquisa.jsx";
 
 export default function App() {
-  const [materias, setMaterias] = useState([]);
+  const [materias, setMaterias] = useState(() => {
+    const dadosSalvos = localStorage.getItem("materias");
+    return dadosSalvos ? JSON.parse(dadosSalvos) : [];
+  });
+
   const [pesquisa, setPesquisa] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("materias", JSON.stringify(materias));
+  }, [materias]);
 
   function excluirMateria(id) {
     setMaterias(materias.filter((materia) => materia.id !== id));
+  }
+  function estudarMateria(id) {
+    setMaterias(
+      materias.map((materia) => {
+        if (materia.id === id && materia.sessoesEstudadas < materia.meta) {
+          return { ...materia, sessoesEstudadas: materia.sessoesEstudadas + 1 };
+        }
+        return materia;
+      }),
+    );
   }
   const materiasFiltradas = materias
     .filter((materia) =>
@@ -31,14 +49,4 @@ export default function App() {
       />
     </div>
   );
-  function estudarMateria(id) {
-    setMaterias(
-      materias.map((materia) => {
-        if (materia.id === id && materia.sessoesEstudadas < materia.meta) {
-          return { ...materia, sessoesEstudadas: materia.sessoesEstudadas + 1 };
-        }
-        return materia;
-      }),
-    );
-  }
 }

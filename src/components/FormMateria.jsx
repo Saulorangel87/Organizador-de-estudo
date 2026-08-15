@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "./FormMateria.module.css";
 
 export default function FormMateria({ setMaterias, materias }) {
   const [nome, setNome] = useState("");
   const [meta, setMeta] = useState(0);
+  const inputNomeRef = useRef(null);
+
   return (
     <form
       className={styles.formMateria}
@@ -24,10 +26,12 @@ export default function FormMateria({ setMaterias, materias }) {
         ]);
         setNome("");
         setMeta(0);
+        inputNomeRef.current.focus();
       }}
     >
       <label htmlFor="nome">Nome da matéria:</label>
       <input
+        ref={inputNomeRef}
         className={styles.input}
         type="text"
         id="nome"
@@ -37,6 +41,7 @@ export default function FormMateria({ setMaterias, materias }) {
       />
       <label htmlFor="meta">Meta da sessão:</label>
       <input
+        className={styles.input}
         type="number"
         min="1"
         value={meta}
