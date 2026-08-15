@@ -29,7 +29,7 @@ export default function ListaMateria({
             <div className={styles.linhaBaixo}>
               <div className={styles.barrafundo}>
                 <div
-                  className={styles.barrapreenchida}
+                  className={styles.barrapreenchida + " " + (progresso === 100 ? styles.completo : "")}
                   style={{ width: `${progresso}%`, backgroundColor: cor }}
                 ></div>
               </div>
