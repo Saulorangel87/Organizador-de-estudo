@@ -28,6 +28,26 @@ export default function App() {
         return acumulador + materia.sessoesEstudadas;
       }, 0) / materias.length,
     ) || 0;
+  const materiasConcluidas = materias.filter(
+    (materia) => materia.sessoesEstudadas >= materia.meta,
+  );
+  const progressoTotal =
+    Math.round((materiasConcluidas.length / materias.length) * 100) || 0;
+  const hoje = new Date();
+  const diaDaSemana = hoje.getDay();
+  let diasParaVoltar;
+  if (diaDaSemana === 0) {
+    diasParaVoltar = 6;
+  } else {
+    diasParaVoltar = diaDaSemana - 1;
+  }
+  const diaDoMes = hoje.getDate();
+  hoje.setDate(diaDoMes - diasParaVoltar);
+  const inicioSemana = hoje.toISOString().split("T")[0];
+
+  const diaDoMesFim = hoje.getDate();
+  hoje.setDate(diaDoMesFim + 6);
+  const fimSemana = hoje.toISOString().split("T")[0];
 
   useEffect(() => {
     localStorage.setItem("materias", JSON.stringify(materias));
@@ -41,10 +61,15 @@ export default function App() {
     setMaterias(materias.filter((materia) => materia.id !== id));
   }
   function estudarMateria(id) {
+    const dataHoje = new Date().toISOString().split("T")[0];
     setMaterias(
       materias.map((materia) => {
         if (materia.id === id && materia.sessoesEstudadas < materia.meta) {
-          return { ...materia, sessoesEstudadas: materia.sessoesEstudadas + 1 };
+          return {
+            ...materia,
+            sessoesEstudadas: materia.sessoesEstudadas + 1,
+            historico: [...(materia.historico || []), dataHoje],
+          };
         }
         return materia;
       }),
@@ -84,6 +109,7 @@ export default function App() {
         <p>Matéria menos estudada não foi cadastrada ainda.</p>
       )}
       <p>Media de sessões estudadas: {mediaSessoes}</p>
+      <p>Progresso total: {progressoTotal}%</p>
       <ListaMateria
         materias={materiasFiltradas}
         onExcluirMateria={excluirMateria}

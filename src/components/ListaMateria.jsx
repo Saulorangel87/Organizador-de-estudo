@@ -15,7 +15,7 @@ export default function ListaMateria({
           (materia.sessoesEstudadas / materia.meta) * 100,
           100,
         )
-        const cor = progresso < 30 ? "red" : progresso < 70 ? "yellow" : "green";
+        const cor = progresso < 40 ? "red" : progresso < 99 ? "yellow" : "green";
 
         return (
           <li className={styles.item} key={materia.id}>
