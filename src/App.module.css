@@ -5,4 +5,5 @@
     max-width: 500px;
     margin: 20px auto;
     padding: 0 8px 8px;
+    color: var(--cor-texto);
 }

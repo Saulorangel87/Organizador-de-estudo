@@ -13,6 +13,9 @@ export default function App() {
 
   const [pesquisa, setPesquisa] = useState("");
   const [modoEscuro, setModoEscuro] = useState(false);
+  const sessoesTotais = materias.reduce((acumulador, materia) => {
+    return acumulador + materia.sessoesEstudadas;
+  }, 0);
 
   useEffect(() => {
     localStorage.setItem("materias", JSON.stringify(materias));
@@ -50,10 +53,14 @@ export default function App() {
 
   return (
     <div className={`${styles.app} ${modoEscuro ? "dark" : ""}`}>
-      <Header onLimparDados={limparDados} onToggleModoEscuro={alternarModoEscuro} />
+      <Header
+        onLimparDados={limparDados}
+        onToggleModoEscuro={alternarModoEscuro}
+      />
       <FormMateria setMaterias={setMaterias} materias={materias} />
       <Pesquisa pesquisa={pesquisa} setPesquisa={setPesquisa} />
-      <p>Total de materias: {materiasFiltradas.length}</p>
+      <p>Total de materias: {materiasFiltradas.length}</p>{" "}
+      <p>Total de sessões estudadas: {sessoesTotais}</p>
       <ListaMateria
         materias={materiasFiltradas}
         onExcluirMateria={excluirMateria}
