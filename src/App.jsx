@@ -16,6 +16,12 @@ export default function App() {
   const sessoesTotais = materias.reduce((acumulador, materia) => {
     return acumulador + materia.sessoesEstudadas;
   }, 0);
+  const materiaMaisEstudada = materias.reduce((atual, materia) => {
+    return atual.sessoesEstudadas > materia.sessoesEstudadas ? atual : materia;
+  }, materias[0]);
+  const materiaMenosEstudada = materias.reduce((atual, materia) => {
+    return atual.sessoesEstudadas < materia.sessoesEstudadas ? atual : materia;
+  }, materias[0]);
 
   useEffect(() => {
     localStorage.setItem("materias", JSON.stringify(materias));
@@ -61,6 +67,16 @@ export default function App() {
       <Pesquisa pesquisa={pesquisa} setPesquisa={setPesquisa} />
       <p>Total de materias: {materiasFiltradas.length}</p>{" "}
       <p>Total de sessões estudadas: {sessoesTotais}</p>
+      {materias.length > 0 ? (
+        <p>Matéria mais estudada: {materiaMaisEstudada.nome}</p>
+      ) : (
+        <p>Matéria mais estudada não foi cadastrada ainda.</p>
+      )}
+      {materias.length > 0 ? (
+        <p>Matéria menos estudada: {materiaMenosEstudada.nome}</p>
+      ) : (
+        <p>Matéria menos estudada não foi cadastrada ainda.</p>
+      )}
       <ListaMateria
         materias={materiasFiltradas}
         onExcluirMateria={excluirMateria}
