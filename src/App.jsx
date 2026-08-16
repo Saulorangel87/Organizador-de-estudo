@@ -49,6 +49,12 @@ export default function App() {
   hoje.setDate(diaDoMesFim + 6);
   const fimSemana = hoje.toISOString().split("T")[0];
 
+  const todasAsDatas = materias.flatMap((materia) => materia.historico || []);
+
+  const sessoesDaSemana = todasAsDatas.filter(
+    (data) => data >= inicioSemana && data <= fimSemana,
+  ).length;
+
   useEffect(() => {
     localStorage.setItem("materias", JSON.stringify(materias));
   }, [materias]);
@@ -110,6 +116,7 @@ export default function App() {
       )}
       <p>Media de sessões estudadas: {mediaSessoes}</p>
       <p>Progresso total: {progressoTotal}%</p>
+      <p>Sessões estudadas essa semana: {sessoesDaSemana}</p>
       <ListaMateria
         materias={materiasFiltradas}
         onExcluirMateria={excluirMateria}
