@@ -22,6 +22,12 @@ export default function App() {
   const materiaMenosEstudada = materias.reduce((atual, materia) => {
     return atual.sessoesEstudadas < materia.sessoesEstudadas ? atual : materia;
   }, materias[0]);
+  const mediaSessoes =
+    Math.round(
+      materias.reduce((acumulador, materia) => {
+        return acumulador + materia.sessoesEstudadas;
+      }, 0) / materias.length,
+    ) || 0;
 
   useEffect(() => {
     localStorage.setItem("materias", JSON.stringify(materias));
@@ -77,6 +83,7 @@ export default function App() {
       ) : (
         <p>Matéria menos estudada não foi cadastrada ainda.</p>
       )}
+      <p>Media de sessões estudadas: {mediaSessoes}</p>
       <ListaMateria
         materias={materiasFiltradas}
         onExcluirMateria={excluirMateria}
