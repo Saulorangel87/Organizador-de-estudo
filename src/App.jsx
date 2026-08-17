@@ -106,6 +106,7 @@ export default function App() {
       <Header
         onLimparDados={limparDados}
         onToggleModoEscuro={alternarModoEscuro}
+        modoEscuro={modoEscuro}
       />
       <FormMateria setMaterias={setMaterias} materias={materias} />
       <Pesquisa pesquisa={pesquisa} setPesquisa={setPesquisa} />
