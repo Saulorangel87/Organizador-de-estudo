@@ -1,3 +1,4 @@
+import BarraProgresso from "./BarraProgresso";
 import styles from "./CardMateria.module.css";
 
 export default function CardMateria({
@@ -21,16 +22,7 @@ export default function CardMateria({
         </div>
       </div>
       <div className={styles.linhaBaixo}>
-        <div className={styles.barrafundo}>
-          <div
-            className={
-              styles.barrapreenchida +
-              " " +
-              (progresso === 100 ? styles.completo : "")
-            }
-            style={{ width: `${progresso}%`, backgroundColor: cor }}
-          ></div>
-        </div>
+        <BarraProgresso progresso={progresso} cor={cor} />
         <button
           className={styles.botaoEstudar}
           onClick={() => onEstudarMateria(materia.id)}
