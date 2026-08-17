@@ -5,6 +5,26 @@ import ListaMateria from "./components/ListaMateria.jsx";
 import styles from "./App.module.css";
 import Pesquisa from "./components/Pesquisa.jsx";
 
+function calcularSemana() {
+  const hoje = new Date();
+  const diaDaSemana = hoje.getDay();
+  let diasParaVoltar;
+  if (diaDaSemana === 0) {
+    diasParaVoltar = 6;
+  } else {
+    diasParaVoltar = diaDaSemana - 1;
+  }
+  const diaDoMes = hoje.getDate();
+  hoje.setDate(diaDoMes - diasParaVoltar);
+  const inicioSemana = hoje.toISOString().split("T")[0];
+
+  const diaDoMesFim = hoje.getDate();
+  hoje.setDate(diaDoMesFim + 6);
+  const fimSemana = hoje.toISOString().split("T")[0];
+
+  return { inicioSemana, fimSemana };
+}
+
 export default function App() {
   const [materias, setMaterias] = useState(() => {
     const dadosSalvos = localStorage.getItem("materias");
@@ -33,21 +53,8 @@ export default function App() {
   );
   const progressoTotal =
     Math.round((materiasConcluidas.length / materias.length) * 100) || 0;
-  const hoje = new Date();
-  const diaDaSemana = hoje.getDay();
-  let diasParaVoltar;
-  if (diaDaSemana === 0) {
-    diasParaVoltar = 6;
-  } else {
-    diasParaVoltar = diaDaSemana - 1;
-  }
-  const diaDoMes = hoje.getDate();
-  hoje.setDate(diaDoMes - diasParaVoltar);
-  const inicioSemana = hoje.toISOString().split("T")[0];
 
-  const diaDoMesFim = hoje.getDate();
-  hoje.setDate(diaDoMesFim + 6);
-  const fimSemana = hoje.toISOString().split("T")[0];
+  const { inicioSemana, fimSemana } = calcularSemana();
 
   const todasAsDatas = materias.flatMap((materia) => materia.historico || []);
 
